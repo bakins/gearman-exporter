@@ -3,7 +3,7 @@ gearman-exporter
 
 Export [gearman](http://gearman.org/) metrics in [Prometheus](https://prometheus.io/) format.
 
-See [Releases](https://github.com/bakins/gearman-exporter/releases) for pre-build binaries.
+See [Releases](https://github.com/bakins/gearman-exporter/releases) for pre-built binaries.
 
 Build
 =====
