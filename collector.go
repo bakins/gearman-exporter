@@ -1,8 +1,12 @@
 package exporter
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.uber.org/zap"
+)
 
 type collector struct {
+	exporter      *Exporter
 	gearman       *gearman
 	up            *prometheus.Desc
 	statusTotal   *prometheus.Desc
@@ -18,8 +22,9 @@ func newFuncMetric(metricName string, docString string, labels []string) *promet
 	)
 }
 
-func newCollector(g *gearman) *collector {
+func (e *Exporter) newCollector(g *gearman) *collector {
 	return &collector{
+		exporter:      e,
 		gearman:       g,
 		up:            newFuncMetric("up", "is gearman up", []string{"version"}),
 		statusTotal:   newFuncMetric("status_total", "number of jobs in the queue", []string{"function"}),
@@ -37,9 +42,9 @@ func (c *collector) Describe(ch chan<- *prometheus.Desc) {
 
 func (c *collector) collectVersion(ch chan<- prometheus.Metric) {
 	up := 1.0
-	// TODO: should we log this error?
 	v, err := c.gearman.getVersion()
 	if err != nil {
+		c.exporter.logger.Error("failed to get gearman version", zap.Error(err))
 		up = 0.0
 		v = "unknown"
 	}
@@ -52,7 +57,7 @@ func (c *collector) collectVersion(ch chan<- prometheus.Metric) {
 func (c *collector) collectStatus(ch chan<- prometheus.Metric) {
 	s, err := c.gearman.getStatus()
 	if err != nil {
-		// TODO: should we log this error?
+		c.exporter.logger.Error("failed to get gearman status", zap.Error(err))
 		return
 	}
 

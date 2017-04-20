@@ -6,6 +6,7 @@ import (
 
 	exporter "github.com/bakins/gearman-exporter"
 	"github.com/spf13/cobra"
+	"go.uber.org/zap"
 )
 
 var (
@@ -27,12 +28,11 @@ func serverCmd(cmd *cobra.Command, args []string) {
 	)
 
 	if err != nil {
-		// TODO: just write to stderr and exit
-		panic(err)
+		logger.Fatal("failed to create exporter", zap.Error(err))
 	}
+
 	if err := e.Run(); err != nil {
-		// TODO: just write to stderr and exit
-		panic(err)
+		logger.Fatal("failed to run exporter", zap.Error(err))
 	}
 }
 

@@ -96,7 +96,7 @@ func (e *Exporter) healthz(w http.ResponseWriter, r *http.Request) {
 // Run starts the http server and collecting metrics. It generally does not return.
 func (e *Exporter) Run() error {
 
-	c := newCollector(newGearman(e.gearmanAddr))
+	c := e.newCollector(newGearman(e.gearmanAddr))
 	if err := prometheus.Register(c); err != nil {
 		return errors.Wrap(err, "failed to register metrics")
 	}
