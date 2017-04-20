@@ -7,3 +7,15 @@ install:
 - true
 script:
 - "./script/build"
+deploy:
+  provider: releases
+  api_key:
+    secure: C4X1zAtBeUJPBUmGx0mDCAGlGQCdu4p6sJwJ5F2HZoadfPE/V0dCRvhC8hm8TKVyesmtACXYSSqW07Sq6A9CCQkV1BsbYEEovPNN7aSmQccRxOF+podkrkYogj0eQl0SJ3/h8DR2Q81+vStxIsPSXJU2yS/8YXMLUfIXOoANcaAjfWBGyCLU1Pop8IIZwaWB3zGt8va0nsj989yaaUkcnoUjdYq4AybSW1MNNnyrN53iHmeyDfp+UvyPB0TTFBAYO5fUt1mYrMI/bFofHZEMwZY+dw7O30Vrhd+ksgDvSXpGUVxnEuQ910xCnXoOGYuZ3JkmV3khidSZ2ZjaYt6VzbakgLPfidprsK/FQibocC8QCI4c5efa3XaQhZF1u70Q4eL1kQjTWt4zhNFXWj6tZK+RnUQHMSHx67aUGCOOJFCUTPPJjPXg5tttAu7/Z8cOYWCzFW6FgKvaE+JfTxM1X/ngDFkgloI76mT26XZJzuPxSRQhhR+6K6ODI6DZb+Bot+mO/ZCCbmQ2+LD4dO6Iah4NlTq6fCIxQThmbgVeMEgWm0xnd7TU3GgBeOba6pdo6p97H0C/jvpDOgLVQe1q5MUAO6FMu3YaYJYbWW8FHMbMZc6rcjeBlqMbayZpc/n8irwFguYHezZotIpEekzjXnQL3CuGtLjsVB2aKKUSRvU=
+  file:
+    - gearman-exporter.linux.amd64
+    - gearman-exporter.darwin.amd64
+  on:
+    repo: bakins/gearman-exporter
+    tags: true
+  skip_cleanup: true
+    
