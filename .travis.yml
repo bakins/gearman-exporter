@@ -1,0 +1,9 @@
+language: go
+go:
+- 1.8.x
+notifications:
+  email: false
+install:
+- true
+script:
+- "./script/build"
