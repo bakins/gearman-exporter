@@ -17,7 +17,7 @@ mkdir -p $HOME/go/src/github.com/bakins
 cd $HOME/go/src/github.com/bakins
 git clone https://github.com/bakins/gearman-exporter
 cd gearman-exporter
-./script/build
+make build
 ```
 
 You should then have two executables: gearman-exporter.linux.amd64 and gearman-exporter.darwin.amd64

@@ -6,7 +6,7 @@ notifications:
 install:
 - true
 script:
-- "./script/build"
+- make build
 deploy:
   provider: releases
   api_key:
