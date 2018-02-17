@@ -43,7 +43,7 @@ var rootCmd = &cobra.Command{
 }
 
 func main() {
-	addr = rootCmd.PersistentFlags().StringP("addr", "", "127.0.0.1:8080", "listen address for metrics handler")
+	addr = rootCmd.PersistentFlags().StringP("addr", "", "127.0.0.1:9418", "listen address for metrics handler")
 	gearmanAddr = rootCmd.PersistentFlags().StringP("gearmand", "", "127.0.0.1:4730", "address of gearmand")
 
 	if err := rootCmd.Execute(); err != nil {

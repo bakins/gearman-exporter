@@ -30,7 +30,7 @@ type OptionsFunc func(*Exporter) error
 // New creates an exporter.
 func New(options ...OptionsFunc) (*Exporter, error) {
 	e := &Exporter{
-		addr:        "127.0.0.1:8080",
+		addr:        "127.0.0.1:9418",
 		gearmanAddr: "127.0.0.1:4730",
 	}
 
