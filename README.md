@@ -35,7 +35,7 @@ Usage:
   gearman-exporter [flags]
 
 Flags:
-      --addr string       listen address for metrics handler (default "127.0.0.1:8080")
+      --addr string       listen address for metrics handler (default "127.0.0.1:9418")
       --gearmand string   address of gearmand (default "127.0.0.1:4730")
 ```
 
@@ -47,7 +47,7 @@ Metrics
 Metrics will be exposes on `/metrics`
 
 ```
-curl http://localhost:8080/metrics
+curl http://localhost:9418/metrics
 
 # HELP gearman_status_running number of running jobs
 # TYPE gearman_status_running gauge
