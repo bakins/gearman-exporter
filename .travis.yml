@@ -8,6 +8,11 @@ notifications:
 services:
   - docker
 
+env:
+  global:
+    - DOCKER_USERNAME=gearmanexporterbot
+    - secure: GETvpQpzTXEXU0q3ZEYI8UFncgyvonKLYUPDQlHzCiWD9FTxJJOkfmXj7C0XqD7+qROzyQak/EK5ZnbuD6rTYxZbtFOJHA5xJKDytfqdP9KSZnqpMnLnnHi2wM9mVDXsJGqDuEC3SU2sMOPfAnWVjHZlDSs1EGC5n71005CFzdvKyug6waAMV58SyMtmKM05+20SlvHD2feOlZh5hmW8gLoxJ8uTJoVSbTidGHulFPNYheIbJeQxhxK0mYgTrZTf6LeRqWR/TWHF5xkWlJQ8jhNv3Y3UYiDURz3v5NRjSJnip2Vh/pFltNzRzmborBwhJaxdQu1dw6BOphK9BbIhj+ZJ/3l/4z827nOPTJOV8mtApl0TPft8U9+7iWeDlTPZgD9LAd1GO6zEPg55KOw18fbTK7LquIXr0V4DOWMtULUwUrk53zApyVisT9Ga6tsYWf+Qj+mVGqakbsyDV+l05fky0ZZ16aj9roSsXGROY5d4AHK/1Ael04R3GkSGevQIEnrlTjPbdwo7lLq9B7eCnxGgWA9GpXR1cF7seM7Oo6Ak8aFDkNYcABuuchZDo/vINJ+dkXro/1ZcL+na9uhgZ+/+LJzaiZpgpET1aR8ky/mMWS7PGxPgdSRkJ6+nKp7ri4QKzet1jk3MiEkpDlGjmJyPDKtVX/KyOyDXSZ09iAY=
+
 install: true
 
 script:
