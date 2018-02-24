@@ -5,6 +5,7 @@ Export [gearman](http://gearman.org/) metrics in [Prometheus](https://prometheus
 
 See [Releases](https://github.com/bakins/gearman-exporter/releases) for pre-built binaries.
 
+
 Usage
 =====
 
@@ -56,6 +57,7 @@ gearman_up 1
 gearman_version_info{version="1.1.18"} 1
 ```
 
+
 Development
 ===========
 
@@ -77,6 +79,11 @@ make build
 You should then have two executables: gearman-exporter.linux.amd64 and gearman-exporter.darwin.amd64
 
 You may want to rename for your local OS, ie `mv gearman-exporter.darwin.amd64 gearman-exporter`
+
+Release new version
+-------------------
+1. Push a tag `vX.Y.Z` to Github
+2. Travis will build the program and create a *Github release*
 
 
 LICENSE
