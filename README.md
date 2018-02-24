@@ -66,7 +66,10 @@ gearman_status_workers{function="baz"} 1
 gearman_status_workers{function="foo"} 1
 # HELP gearman_up is gearman up
 # TYPE gearman_up gauge
-gearman_up{version="1.1.15"} 1
+gearman_up 1
+# HELP gearman_version_info gearman version
+# TYPE gearman_version_info gauge
+gearman_version_info{version="1.1.18"} 1
 ```
 
 LICENSE
