@@ -80,6 +80,18 @@ You should then have two executables: gearman-exporter.linux.amd64 and gearman-e
 
 You may want to rename for your local OS, ie `mv gearman-exporter.darwin.amd64 gearman-exporter`
 
+Run Gearman server for testing
+------------------------------
+For testing you might want to run a gearman server with Docker:
+```
+docker run -p 4730:4730 cargomedia/gearman
+```
+
+While the server is running you could attach a worker function "foo" like this:
+```
+docker exec $(docker ps -qf ancestor=cargomedia/gearman) gearman -t9999 -wnf foo
+```
+
 Release new version
 -------------------
 1. Push a tag `vX.Y.Z` to Github
