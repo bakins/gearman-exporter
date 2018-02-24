@@ -49,21 +49,21 @@ Metrics will be exposes on `/metrics`
 ```
 curl http://localhost:9418/metrics
 
-# HELP gearman_status_running number of running jobs
-# TYPE gearman_status_running gauge
-gearman_status_running{function="bar"} 0
-gearman_status_running{function="baz"} 0
-gearman_status_running{function="foo"} 0
-# HELP gearman_status_total number of jobs in the queue
-# TYPE gearman_status_total gauge
-gearman_status_total{function="bar"} 0
-gearman_status_total{function="baz"} 0
-gearman_status_total{function="foo"} 0
-# HELP gearman_status_workers number of number of capable workers
-# TYPE gearman_status_workers gauge
-gearman_status_workers{function="bar"} 1
-gearman_status_workers{function="baz"} 1
-gearman_status_workers{function="foo"} 1
+# HELP gearman_jobs number of jobs queued or running
+# TYPE gearman_jobs gauge
+gearman_jobs{function="bar"} 0
+gearman_jobs{function="foo"} 0
+# HELP gearman_jobs_running number of running jobs
+# TYPE gearman_jobs_running gauge
+gearman_jobs_running{function="bar"} 0
+gearman_jobs_running{function="foo"} 0
+# HELP gearman_up is gearman up
+# TYPE gearman_up gauge
+gearman_up{version="1.1.18"} 1
+# HELP gearman_workers number of capable workers
+# TYPE gearman_workers gauge
+gearman_workers{function="bar"} 1
+gearman_workers{function="foo"} 1
 # HELP gearman_up is gearman up
 # TYPE gearman_up gauge
 gearman_up 1

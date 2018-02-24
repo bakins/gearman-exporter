@@ -6,13 +6,13 @@ import (
 )
 
 type collector struct {
-	exporter      *Exporter
-	gearman       *gearman
-	up            *prometheus.Desc
-	versionInfo   *prometheus.Desc
-	statusTotal   *prometheus.Desc
-	statusRunning *prometheus.Desc
-	statusWorkers *prometheus.Desc
+	exporter          *Exporter
+	gearman           *gearman
+	up                *prometheus.Desc
+	versionInfo       *prometheus.Desc
+	statusJobs        *prometheus.Desc
+	statusJobsRunning *prometheus.Desc
+	statusWorkers     *prometheus.Desc
 }
 
 // based on https://github.com/hnlq715/nginx-vts-exporter/
@@ -25,21 +25,21 @@ func newFuncMetric(metricName string, docString string, labels []string) *promet
 
 func (e *Exporter) newCollector(g *gearman) *collector {
 	return &collector{
-		exporter:      e,
-		gearman:       g,
-		up:            newFuncMetric("up", "is gearman up", []string{}),
-		versionInfo:   newFuncMetric("version_info", "gearman version", []string{"version"}),
-		statusTotal:   newFuncMetric("status_total", "number of jobs in the queue", []string{"function"}),
-		statusRunning: newFuncMetric("status_running", "number of running jobs", []string{"function"}),
-		statusWorkers: newFuncMetric("status_workers", "number of number of capable workers", []string{"function"}),
+		exporter:          e,
+		gearman:           g,
+		up:                newFuncMetric("up", "is gearman up", []string{}),
+		versionInfo:       newFuncMetric("version_info", "gearman version", []string{"version"}),
+		statusJobs:        newFuncMetric("jobs", "number of jobs queued or running", []string{"function"}),
+		statusJobsRunning: newFuncMetric("jobs_running", "number of running jobs", []string{"function"}),
+		statusWorkers:     newFuncMetric("workers", "number of capable workers", []string{"function"}),
 	}
 }
 
 func (c *collector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- c.up
 	ch <- c.versionInfo
-	ch <- c.statusTotal
-	ch <- c.statusRunning
+	ch <- c.statusJobs
+	ch <- c.statusJobsRunning
 	ch <- c.statusWorkers
 }
 
@@ -71,13 +71,13 @@ func (c *collector) collectStatus(ch chan<- prometheus.Metric) {
 
 	for k, v := range s {
 		ch <- prometheus.MustNewConstMetric(
-			c.statusTotal,
+			c.statusJobs,
 			prometheus.GaugeValue,
 			float64(v.total),
 			k)
 
 		ch <- prometheus.MustNewConstMetric(
-			c.statusRunning,
+			c.statusJobsRunning,
 			prometheus.GaugeValue,
 			float64(v.running),
 			k)
