@@ -3,11 +3,13 @@ gearman-exporter
 
 Export [gearman](http://gearman.org/) metrics in [Prometheus](https://prometheus.io/) format.
 
-See [Releases](https://github.com/bakins/gearman-exporter/releases) for pre-built binaries.
+[![Build Status](https://img.shields.io/travis/bakins/gearman-exporter/master.svg)](https://travis-ci.org/bakins/gearman-exporter)
 
 
 Usage
 =====
+
+See [Releases](https://github.com/bakins/gearman-exporter/releases) for pre-built binaries.
 
 Running
 -------
