@@ -40,20 +40,21 @@ curl http://localhost:9418/metrics
 # TYPE gearman_jobs gauge
 gearman_jobs{function="bar"} 0
 gearman_jobs{function="foo"} 0
+
 # HELP gearman_jobs_running number of running jobs
 # TYPE gearman_jobs_running gauge
 gearman_jobs_running{function="bar"} 0
 gearman_jobs_running{function="foo"} 0
-# HELP gearman_up is gearman up
-# TYPE gearman_up gauge
-gearman_up{version="1.1.18"} 1
+
 # HELP gearman_workers number of capable workers
 # TYPE gearman_workers gauge
 gearman_workers{function="bar"} 1
 gearman_workers{function="foo"} 1
+
 # HELP gearman_up is gearman up
 # TYPE gearman_up gauge
 gearman_up 1
+
 # HELP gearman_version_info gearman version
 # TYPE gearman_version_info gauge
 gearman_version_info{version="1.1.18"} 1
