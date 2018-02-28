@@ -4,6 +4,7 @@ gearman-exporter
 Export [gearman](http://gearman.org/) metrics in [Prometheus](https://prometheus.io/) format.
 
 [![Build Status](https://img.shields.io/travis/bakins/gearman-exporter/master.svg)](https://travis-ci.org/bakins/gearman-exporter)
+[![Docker Image](https://img.shields.io/docker/pulls/gearmanexporter/gearman-exporter.svg)](https://hub.docker.com/r/gearmanexporter/gearman-exporter)
 
 
 Usage
@@ -27,6 +28,14 @@ Flags:
 ```
 
 When running, a simple healthcheck is availible on `/healthz`
+
+Docker
+------
+
+A docker image is published from the Travis build to [Docker Hub](https://hub.docker.com/r/gearmanexporter/gearman-exporter).
+```
+docker run -p9418:9418 gearmanexporter/gearman-exporter --addr 0.0.0.0:9418
+```
 
 Metrics
 -------
