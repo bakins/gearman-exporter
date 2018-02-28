@@ -12,6 +12,7 @@ type collector struct {
 	versionInfo       *prometheus.Desc
 	statusJobs        *prometheus.Desc
 	statusJobsRunning *prometheus.Desc
+	statusJobsWaiting *prometheus.Desc
 	statusWorkers     *prometheus.Desc
 }
 
@@ -31,6 +32,7 @@ func (e *Exporter) newCollector(g *gearman) *collector {
 		versionInfo:       newFuncMetric("version_info", "gearman version", []string{"version"}),
 		statusJobs:        newFuncMetric("jobs", "number of jobs queued or running", []string{"function"}),
 		statusJobsRunning: newFuncMetric("jobs_running", "number of running jobs", []string{"function"}),
+		statusJobsWaiting: newFuncMetric("jobs_waiting", "number of jobs waiting for an available worker", []string{"function"}),
 		statusWorkers:     newFuncMetric("workers", "number of capable workers", []string{"function"}),
 	}
 }
@@ -40,6 +42,7 @@ func (c *collector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- c.versionInfo
 	ch <- c.statusJobs
 	ch <- c.statusJobsRunning
+	ch <- c.statusJobsWaiting
 	ch <- c.statusWorkers
 }
 
@@ -80,6 +83,12 @@ func (c *collector) collectStatus(ch chan<- prometheus.Metric) {
 			c.statusJobsRunning,
 			prometheus.GaugeValue,
 			float64(v.running),
+			k)
+
+		ch <- prometheus.MustNewConstMetric(
+			c.statusJobsWaiting,
+			prometheus.GaugeValue,
+			float64(v.total-v.running),
 			k)
 
 		ch <- prometheus.MustNewConstMetric(
