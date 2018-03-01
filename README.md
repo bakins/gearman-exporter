@@ -57,7 +57,7 @@ gearman_jobs_running{function="foo"} 0
 
 # HELP gearman_jobs_waiting number of jobs waiting for an available worker
 # TYPE gearman_jobs_waiting gauge
-gearman_jobs_running{function="bar"} 0
+gearman_jobs_waiting{function="bar"} 0
 gearman_jobs_waiting{function="foo"} 0
 
 # HELP gearman_workers number of capable workers
