@@ -11,7 +11,7 @@ build: $(PLATFORMS)
 
 .PHONY: $(PLATFORMS)
 $(PLATFORMS):
-	CGO_ENABLED=0 GOOS=$(os) GOARCH=$(arch) go build -o $(NAME).$(os).$(arch) ./cmd/$(NAME)
+	GOFLAGS=-mod=vendor CGO_ENABLED=0 GOOS=$(os) GOARCH=$(arch) go build -o $(NAME).$(os).$(arch) ./cmd/$(NAME)
 
 .PHONY: docker-build
 docker-build:

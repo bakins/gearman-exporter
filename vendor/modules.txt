@@ -1,0 +1,40 @@
+# github.com/beorn7/perks v0.0.0-20160804104726-4c0e84591b9a
+github.com/beorn7/perks/quantile
+# github.com/golang/protobuf v0.0.0-20170331031902-2bba0603135d
+github.com/golang/protobuf/proto
+# github.com/inconshreveable/mousetrap v1.0.0
+github.com/inconshreveable/mousetrap
+# github.com/matttproud/golang_protobuf_extensions v1.0.1
+github.com/matttproud/golang_protobuf_extensions/pbutil
+# github.com/pkg/errors v0.8.0
+github.com/pkg/errors
+# github.com/prometheus/client_golang v0.8.0
+github.com/prometheus/client_golang/prometheus
+github.com/prometheus/client_golang/prometheus/promhttp
+# github.com/prometheus/client_model v0.0.0-20170216185247-6f3806018612
+github.com/prometheus/client_model/go
+# github.com/prometheus/common v0.0.0-20170220103846-49fee292b27b
+github.com/prometheus/common/expfmt
+github.com/prometheus/common/model
+github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
+# github.com/prometheus/procfs v0.0.0-20170216223256-a1dba9ce8bae
+github.com/prometheus/procfs
+github.com/prometheus/procfs/xfs
+# github.com/spf13/cobra v0.0.0-20160722081547-f62e98d28ab7
+github.com/spf13/cobra
+# github.com/spf13/pflag v0.0.0-20161024131444-5ccb023bc27d
+github.com/spf13/pflag
+# go.uber.org/atomic v1.2.0
+go.uber.org/atomic
+# go.uber.org/zap v1.2.0
+go.uber.org/zap
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/internal/multierror
+go.uber.org/zap/zapcore
+go.uber.org/zap/buffer
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+# golang.org/x/net v0.0.0-20170114055629-f2499483f923
+golang.org/x/net/context
+# golang.org/x/sync v0.0.0-20170418210838-de49d9dcd27d
+golang.org/x/sync/errgroup
