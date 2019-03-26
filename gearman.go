@@ -2,11 +2,10 @@ package exporter
 
 import (
 	"net"
+	"net/textproto"
 	"strconv"
 	"strings"
 	"time"
-
-	"net/textproto"
 
 	"github.com/pkg/errors"
 )

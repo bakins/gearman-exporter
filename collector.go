@@ -5,6 +5,8 @@ import (
 	"go.uber.org/zap"
 )
 
+const metricsNamespace = "gearman"
+
 type collector struct {
 	exporter          *Exporter
 	gearman           *gearman

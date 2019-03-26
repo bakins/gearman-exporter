@@ -23,3 +23,6 @@ docker-push:
 	docker tag gearmanexporter/gearman-exporter:latest gearmanexporter/gearman-exporter:$(VERSION)
 	docker push gearmanexporter/gearman-exporter:latest
 	docker push gearmanexporter/gearman-exporter:$(VERSION)
+
+lint:
+	GOFLAGS=-mod=readonly golangci-lint run -v ./...
