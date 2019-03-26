@@ -24,6 +24,6 @@ var (
 )
 
 func init() {
-	//prometheus.MustRegister(requestsHistogram)
-	//prometheus.MustRegister(gearmanUp)
+	prometheus.MustRegister(requestsHistogram)
+	prometheus.MustRegister(gearmanUp)
 }

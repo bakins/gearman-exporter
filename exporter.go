@@ -90,7 +90,7 @@ var healthzOK = []byte("ok\n")
 
 func (e *Exporter) healthz(w http.ResponseWriter, r *http.Request) {
 	// TODO: check if we can contact gearman?
-	w.Write(healthzOK)
+	_, _ = w.Write(healthzOK)
 }
 
 // Run starts the http server and collecting metrics. It generally does not return.
