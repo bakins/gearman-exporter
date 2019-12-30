@@ -74,6 +74,9 @@ gearman_up 1
 gearman_version_info{version="1.1.18"} 1
 ```
 
+Grafana
+-------
+https://grafana.com/grafana/dashboards/11423
 
 Development
 ===========
