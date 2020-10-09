@@ -2,14 +2,14 @@ package exporter
 
 import (
 	"context"
+	"fmt"
 	"net"
 	"net/http"
 	"os"
 	"os/signal"
+	"regexp"
 	"syscall"
 	"time"
-	"regexp"
-	"fmt"
 
 	"go.uber.org/zap"
 
@@ -21,10 +21,10 @@ import (
 
 // Exporter handles serving the metrics
 type Exporter struct {
-	addr        string
-	gearmanAddr string
+	addr                   string
+	gearmanAddr            string
 	ignoredEndpointRegexes regexp.Regexp
-	logger      *zap.Logger
+	logger                 *zap.Logger
 }
 
 // OptionsFunc is a function passed to new for setting options on a new Exporter.

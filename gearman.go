@@ -3,10 +3,10 @@ package exporter
 import (
 	"net"
 	"net/textproto"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
-	"regexp"
 
 	"github.com/pkg/errors"
 )
@@ -15,14 +15,14 @@ import (
 
 // not concurrency safe, so caller should ensure is only in use by one goroutine
 type gearman struct {
-	addr string
-	conn *textproto.Conn
+	addr                 string
+	conn                 *textproto.Conn
 	ignoredEndpointRegex regexp.Regexp
 }
 
 func newGearman(addr string, ignoredEndpointRegex regexp.Regexp) *gearman {
 	return &gearman{
-		addr: addr,
+		addr:                 addr,
 		ignoredEndpointRegex: ignoredEndpointRegex,
 	}
 }
