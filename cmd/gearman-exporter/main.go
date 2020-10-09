@@ -22,7 +22,6 @@ func serverCmd(cmd *cobra.Command, args []string) {
 		panic(err)
 	}
 
-	fmt.Println(ignoreGearmanEndpointRegex)
 	e, err := exporter.New(
 		exporter.SetAddress(*addr),
 		exporter.SetGearmanAddress(*gearmanAddr),
@@ -46,7 +45,7 @@ var rootCmd = &cobra.Command{
 }
 
 func main() {
-	addr = rootCmd.PersistentFlags().StringP("addr", "", "127.0.0.2:9418", "listen address for metrics handler")
+	addr = rootCmd.PersistentFlags().StringP("addr", "", "127.0.0.1:9418", "listen address for metrics handler")
 	gearmanAddr = rootCmd.PersistentFlags().StringP("gearmand", "", "127.0.0.1:4730", "address of gearmand")
 	ignoreGearmanEndpointRegex = rootCmd.PersistentFlags().StringP("ignore-endpoint-regex", "", "^$", "a regex to ignore gearman endpoints")
 
