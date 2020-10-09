@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"regexp"
 
 	"github.com/pkg/errors"
 )
@@ -16,11 +17,13 @@ import (
 type gearman struct {
 	addr string
 	conn *textproto.Conn
+	ignoredEndpointRegex regexp.Regexp
 }
 
-func newGearman(addr string) *gearman {
+func newGearman(addr string, ignoredEndpointRegex regexp.Regexp) *gearman {
 	return &gearman{
 		addr: addr,
+		ignoredEndpointRegex: ignoredEndpointRegex,
 	}
 }
 
@@ -72,6 +75,16 @@ func (g *gearman) getStatus() (map[string]*funcStatus, error) {
 
 	metrics := make(map[string]*funcStatus)
 	for {
+		// Each line of data is of the format
+		// functionName total running available workers
+		// separated by tags. It is terminated by a `.`
+		// on a new line.
+		// e.g.
+		//
+		// ToUpper	0	0	1
+		// SysInfo	0	0	1
+		// .
+		//
 		data, err := c.ReadLine()
 		if err != nil {
 			g.close()
@@ -84,6 +97,11 @@ func (g *gearman) getStatus() (map[string]*funcStatus, error) {
 		parts := strings.SplitN(data, "\t", 4)
 		if len(parts) != 4 {
 			return nil, errors.Wrap(err, "invalid status response")
+		}
+		// Check to see if the function name matches our ignore regex
+		funcName := parts[0]
+		if g.ignoredEndpointRegex.MatchString(funcName) {
+			continue
 		}
 		// parse each field. this is a bit brute force, but easy to understand
 		s := &funcStatus{}
@@ -99,7 +117,7 @@ func (g *gearman) getStatus() (map[string]*funcStatus, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to parse workers field in status response")
 		}
-		metrics[parts[0]] = s
+		metrics[funcName] = s
 	}
 
 	return metrics, nil

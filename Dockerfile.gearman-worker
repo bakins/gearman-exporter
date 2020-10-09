@@ -1,0 +1,12 @@
+FROM golang:1 as builder
+
+WORKDIR /build
+COPY . .
+RUN go build -mod=vendor -o /gearman-worker cmd/gearman-worker/main.go
+
+FROM debian:bullseye-slim
+
+COPY --from=builder /gearman-worker /usr/bin/gearman-worker
+RUN chmod +x /usr/bin/gearman-worker
+
+CMD [ "/usr/bin/gearman-worker" ]

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  gearman:
+    image: artefactual/gearmand
+  gearman-exporter:
+    depends_on:
+      - gearman
+    ports:
+      - 9418:9418
+    build: .
+    command:
+      - /usr/bin/gearman-exporter
+      - --gearmand
+      - gearman:4730
+      - --ignore-endpoint-regex
+      - 'ToUpperTimeOut.*'
+      - --addr
+      - 0.0.0.0:9418
+  gearman-worker:
+    depends_on:
+      - gearman
+    build:
+      context: .
+      dockerfile: Dockerfile.gearman-worker

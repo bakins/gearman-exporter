@@ -1,6 +1,12 @@
-FROM alpine:3.7
+FROM golang:1 as builder
 
-ADD gearman-exporter.linux.amd64 /usr/bin/gearman-exporter
-RUN chmod a+x /usr/bin/gearman-exporter
+WORKDIR /build
+COPY . .
+RUN go build -mod=vendor -o /gearman-exporter cmd/gearman-exporter/main.go
 
-ENTRYPOINT [ "/usr/bin/gearman-exporter" ]
+FROM debian:bullseye-slim
+
+COPY --from=builder /gearman-exporter /usr/bin/gearman-exporter
+RUN chmod +x /usr/bin/gearman-exporter
+
+CMD [ "/usr/bin/gearman-exporter" ]
