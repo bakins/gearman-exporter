@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gearman-exporter
+  labels:
+    app.kubernetes.io/name: gearman-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gearman-exporter
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gearman-exporter
+    spec:
+      containers:
+        - image: gearmanexporter/gearman-exporter
+          name: gearman-exporter
+          ports:
+            - containerPort: 9418
+              name: frontend
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+          args:
+            - --addr
+            - 0.0.0.0:9418
+            - --gearmand
+            - mygearman.example.loc:4730
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: sma
+  labels:
+    app.kubernetes.io/name: gearman-exporter
+  name: gearman-exporter
+spec:
+  ports:
+    - name: frontend
+      protocol: TCP
+      port: 9418
+      targetPort: 9418
+  selector:
+    app.kubernetes.io/name: gearman-exporter
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gearman-exporter
+  annotations:
+spec:
+  rules:
+    - host: exporter.gearman.example.loc
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: gearman-exporter
+                port:
+                  number: 9418
