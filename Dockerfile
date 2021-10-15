@@ -1,6 +1,5 @@
-FROM alpine:3.7
+FROM scratch
 
-ADD gearman-exporter.linux.amd64 /usr/bin/gearman-exporter
-RUN chmod a+x /usr/bin/gearman-exporter
+ADD gearman-exporter.linux.amd64 /gearman-exporter
 
-ENTRYPOINT [ "/usr/bin/gearman-exporter" ]
+ENTRYPOINT [ "/gearman-exporter" ]
