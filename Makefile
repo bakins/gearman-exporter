@@ -1,5 +1,5 @@
 NAME := gearman-exporter
-PLATFORMS := linux/amd64 darwin/amd64
+PLATFORMS := linux/amd64 darwin/amd64 darwin/arm64
 VERSION := $(shell git describe --tags --abbrev=0)
 
 temp = $(subst /, ,$@)
