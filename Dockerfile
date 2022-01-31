@@ -1,6 +1,8 @@
-FROM alpine:3.7
+FROM golang:1-alpine as build
+WORKDIR /go/gearman-exporter
+COPY . .
+RUN go build -o /gearman-exporter ./cmd/gearman-exporter
 
-ADD gearman-exporter.linux.amd64 /usr/bin/gearman-exporter
-RUN chmod a+x /usr/bin/gearman-exporter
-
+FROM alpine:3
+COPY --from=build /gearman-exporter /usr/bin/gearman-exporter
 ENTRYPOINT [ "/usr/bin/gearman-exporter" ]
