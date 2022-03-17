@@ -1,2 +1,3 @@
 gearman-exporter.darwin.amd64
 gearman-exporter.linux.amd64
+gearman-exporter.darwin.arm64
