@@ -14,8 +14,8 @@ require (
 	github.com/prometheus/procfs v0.0.0-20170216223256-a1dba9ce8bae // indirect
 	github.com/spf13/cobra v0.0.0-20160722081547-f62e98d28ab7
 	github.com/spf13/pflag v0.0.0-20161024131444-5ccb023bc27d // indirect
+	github.com/stretchr/testify v1.8.2 // indirect
 	go.uber.org/atomic v1.2.0 // indirect
 	go.uber.org/zap v1.2.0
-	golang.org/x/net v0.0.0-20170114055629-f2499483f923 // indirect
-	golang.org/x/sync v0.0.0-20170418210838-de49d9dcd27d
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 )
